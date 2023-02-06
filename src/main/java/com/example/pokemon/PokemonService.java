@@ -7,30 +7,29 @@ import java.util.List;
 @Singleton
 public class PokemonService {
 
-    private final PokemonRepository pokemonRepository;
+  private final PokemonRepository pokemonRepository;
 
-    public PokemonService(PokemonRepository pokemonRepository) {
-        this.pokemonRepository = pokemonRepository;
-    }
+  public PokemonService(PokemonRepository pokemonRepository) {
+    this.pokemonRepository = pokemonRepository;
+  }
 
-    public List<Pokemon> get()
-    {
-        return pokemonRepository.get();
-    }
+  public List<Pokemon> get() {
+    return (List<Pokemon>) pokemonRepository.findAll();
+  }
 
-    public Pokemon create(Pokemon pokemon) {
-        return this.pokemonRepository.create(pokemon);
-    }
+  public Pokemon create(Pokemon pokemon) {
+    return pokemonRepository.save(pokemon);
+  }
 
-    public Pokemon put(Pokemon pokemon) {
-        return this.pokemonRepository.put(pokemon);
-    }
+  public Pokemon update(Pokemon pokemon) {
+    return pokemonRepository.update(pokemon);
+  }
 
-    public Pokemon getPokemon(Integer id) {
-        return this.pokemonRepository.getPokemon(id);
-    }
+  public Pokemon getPokemon(Integer id) {
+    return pokemonRepository.findById(id).orElseThrow();
+  }
 
-    public Pokemon deletePokemon(Integer id) {
-        return this.pokemonRepository.deletePokemon(id);
-    }
+  public void deletePokemon(Integer id) {
+    this.pokemonRepository.deleteById(id);
+  }
 }

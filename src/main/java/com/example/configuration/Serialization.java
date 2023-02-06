@@ -8,15 +8,14 @@ import jakarta.inject.Singleton;
 
 @Singleton
 public class Serialization implements ApplicationEventListener<ServerStartupEvent> {
-    private final ObjectMapper mapper;
+  private final ObjectMapper mapper;
 
+  public Serialization(ObjectMapper mapper) {
+    this.mapper = mapper;
+  }
 
-    public Serialization(ObjectMapper mapper) {
-        this.mapper = mapper;
-    }
-
-    @Override
-    public void onApplicationEvent(ServerStartupEvent event) {
-        this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-    }
+  @Override
+  public void onApplicationEvent(ServerStartupEvent event) {
+    this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+  }
 }
