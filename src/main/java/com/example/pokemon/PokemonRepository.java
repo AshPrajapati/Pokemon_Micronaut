@@ -27,4 +27,22 @@ public class PokemonRepository {
         store.add(pokemon);
         return pokemon;
     }
+
+    public Pokemon put(Pokemon pokemon) {
+        Pokemon pk = this.store.stream().filter(p->p.getId()==pokemon.getId()).findFirst().orElseThrow();
+        pk.setName(pokemon.getName());
+        pk.setPower(pokemon.getPower());
+        pk.setImageUrl(pokemon.getImageUrl());
+        return pk;
+    }
+
+    public Pokemon getPokemon(Integer id) {
+        return this.store.stream().filter(p->p.getId()==id).findFirst().orElseThrow();
+    }
+
+    public Pokemon deletePokemon(Integer id) {
+        Pokemon pokemonToBeDelete = this.store.stream().filter(p->p.getId()==id).findFirst().orElseThrow();
+        store.remove(pokemonToBeDelete);
+        return pokemonToBeDelete;
+    }
 }

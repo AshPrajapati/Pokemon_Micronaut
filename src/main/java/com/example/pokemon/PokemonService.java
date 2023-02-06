@@ -21,4 +21,16 @@ public class PokemonService {
     public Pokemon create(Pokemon pokemon) {
         return this.pokemonRepository.create(pokemon);
     }
+
+    public Pokemon put(Pokemon pokemon) {
+        return this.pokemonRepository.put(pokemon);
+    }
+
+    public Pokemon getPokemon(Integer id) {
+        return this.pokemonRepository.getPokemon(id);
+    }
+
+    public Pokemon deletePokemon(Integer id) {
+        return this.pokemonRepository.deletePokemon(id);
+    }
 }

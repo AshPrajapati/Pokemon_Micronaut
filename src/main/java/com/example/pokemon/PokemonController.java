@@ -1,9 +1,6 @@
 package com.example.pokemon;
 
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class PokemonController {
     }
 
     @Get
-    public List<Pokemon> test()
+    public List<Pokemon> get()
     {
         return pokemonService.get();
     }
@@ -26,5 +23,23 @@ public class PokemonController {
     public Pokemon create(@Body Pokemon pokemon)
     {
         return pokemonService.create(pokemon);
+    }
+
+    @Put
+    public Pokemon put(@Body Pokemon pokemon)
+    {
+        return pokemonService.put(pokemon);
+    }
+
+    @Get(value="/{id}")
+    public Pokemon getPokemon(@QueryValue Integer id)
+    {
+        return pokemonService.getPokemon(id);
+    }
+
+    @Delete(value="/{id}")
+    public Pokemon deletePokemon(@QueryValue Integer id)
+    {
+        return pokemonService.deletePokemon(id);
     }
 }
