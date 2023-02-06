@@ -12,4 +12,6 @@
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>
+    <logger level="info" name="com.example.pokemon">
+    </logger>
 </configuration>
