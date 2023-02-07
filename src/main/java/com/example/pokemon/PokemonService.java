@@ -1,5 +1,6 @@
 package com.example.pokemon;
 
+import com.example.exception.EntityNotFound;
 import jakarta.inject.Singleton;
 
 import java.util.List;
@@ -18,23 +19,26 @@ public class PokemonService {
     return pokemonRepository.findAll();
   }
 
-  public Pokemon create(Pokemon pokemon) {
-    Optional<Pokemon> byName = pokemonRepository.findByNameIgnoreCase(pokemon.getName());
+  public Pokemon create(PokemonCreationForm pokemonCreationForm) {
+    Optional<Pokemon> byName = pokemonRepository.findByNameIgnoreCase(pokemonCreationForm.getName());
     if(byName.isPresent()) {throw new RuntimeException("Pokemon already exist with this name");}
+    Pokemon pokemon = new Pokemon();
+    pokemon.setName(pokemonCreationForm.getName());
+    pokemon.setPower(pokemonCreationForm.getPower());
     return pokemonRepository.save(pokemon);
   }
 
   public Pokemon update(Pokemon pokemon) {
-    pokemonRepository.findById(pokemon.getId()).orElseThrow(() -> new PokemonNotFound());
+    pokemonRepository.findById(pokemon.getId()).orElseThrow(() -> new EntityNotFound("Pokemon not found"));
     return pokemonRepository.update(pokemon);
   }
 
   public Pokemon getPokemon(Integer id) {
-    return pokemonRepository.findById(id).orElseThrow(() -> new PokemonNotFound());
+    return pokemonRepository.findById(id).orElseThrow(() -> new EntityNotFound("Pokemon not found"));
   }
 
   public void deletePokemon(Integer id) {
-    pokemonRepository.findById(id).orElseThrow(() -> new PokemonNotFound());
+    pokemonRepository.findById(id).orElseThrow(() -> new EntityNotFound("Pokemon not found"));
     this.pokemonRepository.deleteById(id);
   }
 }
