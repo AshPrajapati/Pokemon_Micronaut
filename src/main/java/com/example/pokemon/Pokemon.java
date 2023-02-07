@@ -7,12 +7,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Pokemon {
-  @Id
-  @GeneratedValue()
-  private Integer id;
+  @Id @GeneratedValue() private Integer id;
 
-  @Column(unique = true)
   private String name;
+
   private String power;
   private String imageUrl;
 

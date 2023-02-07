@@ -1,5 +1,5 @@
 package com.example.pokemon;
 
-public class PokemonNotFound extends Exception {
+public class PokemonNotFound extends RuntimeException {
 
 }
