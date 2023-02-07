@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PokemonRepository extends CrudRepository<Pokemon,Integer> {
-    Optional<Pokemon> findByNameIgnoreCase(String name);
-    List<Pokemon> findAll();
+public interface PokemonRepository extends CrudRepository<Pokemon, Integer> {
+  Optional<Pokemon> findByNameIgnoreCase(String name);
+
+  List<Pokemon> findAll();
 }

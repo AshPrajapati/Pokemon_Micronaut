@@ -1,26 +1,24 @@
 package com.example.pokemon;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="pokemon")
 public class Pokemon {
-  @Id @GeneratedValue() private Integer id;
+  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Integer id;
 
   private String name;
 
   private String power;
-  private String imageUrl;
+//  private String imageUrl;
 
   public Pokemon() {}
 
-  public Pokemon(Integer id, String name, String power, String imageUrl) {
+  public Pokemon(Integer id, String name, String power) {
     this.id = id;
     this.name = name;
     this.power = power;
-    this.imageUrl = imageUrl;
+//    this.imageUrl = imageUrl;
   }
 
   public Integer getId() {
@@ -47,11 +45,11 @@ public class Pokemon {
     this.power = power;
   }
 
-  public String getImageUrl() {
-    return imageUrl;
-  }
+//  public String getImageUrl() {
+//    return imageUrl;
+//  }
 
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
-  }
+//  public void setImageUrl(String imageUrl) {
+//    this.imageUrl = imageUrl;
+//  }
 }

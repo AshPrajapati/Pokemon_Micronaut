@@ -32,7 +32,6 @@ public class PokemonController {
 
   @Get(value = "/{id}")
   public HttpResponse<Pokemon> getPokemon(@PathVariable Integer id) {
-
     return HttpResponse.ok(pokemonService.getPokemon(id));
   }
 
