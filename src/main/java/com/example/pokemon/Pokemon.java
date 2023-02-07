@@ -1,5 +1,7 @@
 package com.example.pokemon;
 
+import com.example.power.Power;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,16 +11,19 @@ public class Pokemon {
 
   private String name;
 
-  private String power;
-//  private String imageUrl;
+  @ManyToOne
+  @JoinColumn(referencedColumnName = "id",name = "power")
+  private Power power;
+  @Column(name = "image_url")
+  private String imageUrl;
 
   public Pokemon() {}
 
-  public Pokemon(Integer id, String name, String power) {
+  public Pokemon(Integer id, String name, Power power,String imageUrl) {
     this.id = id;
     this.name = name;
     this.power = power;
-//    this.imageUrl = imageUrl;
+    this.imageUrl = imageUrl;
   }
 
   public Integer getId() {
@@ -37,19 +42,19 @@ public class Pokemon {
     this.name = name;
   }
 
-  public String getPower() {
+  public Power getPower() {
     return power;
   }
 
-  public void setPower(String power) {
+  public void setPower(Power power) {
     this.power = power;
   }
 
-//  public String getImageUrl() {
-//    return imageUrl;
-//  }
+  public String getImageUrl() {
+    return imageUrl;
+  }
 
-//  public void setImageUrl(String imageUrl) {
-//    this.imageUrl = imageUrl;
-//  }
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
 }

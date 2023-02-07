@@ -8,21 +8,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PokemonCreationForm {
 
   private final String name;
-  private final String power;
+  private final Integer powerId;
+  private final String imageUrl;
 
   @JsonCreator
   public PokemonCreationForm(
-      @JsonProperty("name") String name, @JsonProperty("power") String power) {
+      @JsonProperty("name") String name, @JsonProperty("power_id") Integer powerId,@JsonProperty("image_url") String imageUrl) {
 
     this.name = name;
-    this.power = power;
+    this.powerId = powerId;
+    this.imageUrl = imageUrl;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
   }
 
   public String getName() {
     return name;
   }
 
-  public String getPower() {
-    return power;
+  public Integer getPowerId() {
+    return powerId;
   }
 }

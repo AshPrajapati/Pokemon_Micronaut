@@ -2,6 +2,8 @@ package com.example.pokemon;
 
 import com.example.exception.EntityAlreadyExistsException;
 import com.example.exception.EntityNotFound;
+import com.example.power.Power;
+import com.example.power.PowerService;
 import jakarta.inject.Singleton;
 
 import java.util.List;
@@ -11,9 +13,11 @@ import java.util.Optional;
 public class PokemonService {
 
   private final PokemonRepository pokemonRepository;
+  private final PowerService powerService;
 
-  public PokemonService(PokemonRepository pokemonRepository) {
+  public PokemonService(PokemonRepository pokemonRepository, PowerService powerService) {
     this.pokemonRepository = pokemonRepository;
+    this.powerService = powerService;
   }
 
   public List<Pokemon> get() {
@@ -26,9 +30,12 @@ public class PokemonService {
     if (byName.isPresent()) {
       throw new EntityAlreadyExistsException("Pokemon already exist with this name");
     }
+
+    Power power=powerService.get(pokemonCreationForm.getPowerId());
     Pokemon pokemon = new Pokemon();
     pokemon.setName(pokemonCreationForm.getName());
-    pokemon.setPower(pokemonCreationForm.getPower());
+    pokemon.setPower(power);
+    pokemon.setImageUrl(pokemonCreationForm.getImageUrl());
     return pokemonRepository.save(pokemon);
   }
 
