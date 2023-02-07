@@ -24,17 +24,17 @@ public class PokemonController {
   }
 
   @Put
-  public Pokemon update(@Body Pokemon pokemon) {
+  public Pokemon update(@Body Pokemon pokemon) throws PokemonNotFound {
     return pokemonService.update(pokemon);
   }
 
   @Get(value = "/{id}")
-  public Pokemon getPokemon(@PathVariable Integer id) {
+  public Pokemon getPokemon(@PathVariable Integer id) throws PokemonNotFound {
     return pokemonService.getPokemon(id);
   }
 
   @Delete(value = "/{id}")
-  public void deletePokemon(@PathVariable Integer id) {
+  public void deletePokemon(@PathVariable Integer id) throws PokemonNotFound {
     pokemonService.deletePokemon(id);
   }
 }

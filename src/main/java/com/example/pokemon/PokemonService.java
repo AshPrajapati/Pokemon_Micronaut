@@ -21,15 +21,17 @@ public class PokemonService {
     return pokemonRepository.save(pokemon);
   }
 
-  public Pokemon update(Pokemon pokemon) {
+  public Pokemon update(Pokemon pokemon) throws PokemonNotFound{
+    pokemonRepository.findById(pokemon.getId()).orElseThrow(() ->  new PokemonNotFound());
     return pokemonRepository.update(pokemon);
   }
 
-  public Pokemon getPokemon(Integer id) {
-    return pokemonRepository.findById(id).orElseThrow();
+  public Pokemon getPokemon(Integer id) throws PokemonNotFound{
+    return pokemonRepository.findById(id).orElseThrow(()->new PokemonNotFound());
   }
 
-  public void deletePokemon(Integer id) {
+  public void deletePokemon(Integer id) throws PokemonNotFound{
+    pokemonRepository.findById(id).orElseThrow(() ->  new PokemonNotFound());
     this.pokemonRepository.deleteById(id);
   }
 }
