@@ -21,8 +21,8 @@ public class PokemonController {
   }
 
   @Post
-  public HttpResponse<Pokemon> create(@Body Pokemon pokemon) {
-    return HttpResponse.created(pokemonService.create(pokemon));
+  public HttpResponse<Pokemon> create(@Body PokemonCreationForm pokemonCreationForm) {
+    return HttpResponse.created(pokemonService.create(pokemonCreationForm));
   }
 
   @Put
