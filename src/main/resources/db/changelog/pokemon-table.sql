@@ -11,7 +11,7 @@ CREATE TABLE `pokemon` (
 
 --changeset example-user:added image_url
 ALTER TABLE `pokemon`
-ADD COLUMN `image_url` VARCHAR(45) NULL AFTER `power`;
+ADD COLUMN `image_url` VARCHAR(200) NULL AFTER `power`;
 
 --changeset example-user:changed data type of power column
 ALTER TABLE `pokemon`
@@ -44,3 +44,4 @@ ADD CONSTRAINT `power_fk`
   REFERENCES `pokemon`.`power` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+

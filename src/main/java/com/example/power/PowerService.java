@@ -2,6 +2,7 @@ package com.example.power;
 
 import com.example.exception.EntityNotFound;
 import jakarta.inject.Singleton;
+import java.util.List;
 
 @Singleton
 public class PowerService {
@@ -13,5 +14,9 @@ public class PowerService {
 
     public Power get(Integer id){
         return powerRepository.findById(id).orElseThrow(()->new EntityNotFound("Power not exist with this id "+id));
+    }
+
+    public List<Power> get() {
+        return powerRepository.findAll();
     }
 }

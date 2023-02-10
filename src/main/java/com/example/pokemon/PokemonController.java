@@ -1,9 +1,13 @@
 package com.example.pokemon;
 
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.MutableHttpResponse;
-import io.micronaut.http.annotation.*;
-
+import io.micronaut.http.annotation.Body;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Delete;
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.PathVariable;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
 import java.util.List;
 
 @Controller("/pokemon")
@@ -21,13 +25,13 @@ public class PokemonController {
   }
 
   @Post
-  public HttpResponse<Pokemon> create(@Body PokemonCreationForm pokemonCreationForm) {
+  public HttpResponse<Pokemon> create(@Body PokemonForm pokemonCreationForm) {
     return HttpResponse.created(pokemonService.create(pokemonCreationForm));
   }
 
-  @Put
-  public HttpResponse<Pokemon> update(@Body Pokemon pokemon) {
-    return HttpResponse.created(pokemonService.update(pokemon));
+  @Put(value = "/{id}")
+  public HttpResponse<Pokemon> update(@PathVariable Integer id, @Body PokemonForm pokemon) {
+    return HttpResponse.created(pokemonService.update(id, pokemon));
   }
 
   @Get(value = "/{id}")

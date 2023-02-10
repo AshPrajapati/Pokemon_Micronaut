@@ -24,7 +24,7 @@ public class PokemonService {
     return pokemonRepository.findAll();
   }
 
-  public Pokemon create(PokemonCreationForm pokemonCreationForm) {
+  public Pokemon create(PokemonForm pokemonCreationForm) {
     Optional<Pokemon> byName =
         pokemonRepository.findByNameIgnoreCase(pokemonCreationForm.getName());
     if (byName.isPresent()) {
@@ -39,11 +39,15 @@ public class PokemonService {
     return pokemonRepository.save(pokemon);
   }
 
-  public Pokemon update(Pokemon pokemon) {
-    pokemonRepository
-        .findById(pokemon.getId())
+  public Pokemon update(Integer id, PokemonForm pokemon) {
+    Pokemon foundPokemon = pokemonRepository
+        .findById(id)
         .orElseThrow(() -> new EntityNotFound("Pokemon not found"));
-    return pokemonRepository.update(pokemon);
+    Power foundPower = powerService.get(pokemon.getPowerId());
+    foundPokemon.setName(pokemon.getName());
+    foundPokemon.setPower(foundPower);
+    foundPokemon.setImageUrl(pokemon.getImageUrl());
+    return pokemonRepository.update(foundPokemon);
   }
 
   public Pokemon getPokemon(Integer id) {
