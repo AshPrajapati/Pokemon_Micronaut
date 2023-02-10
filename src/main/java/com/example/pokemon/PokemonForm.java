@@ -11,7 +11,10 @@ public class PokemonForm {
   private final String imageUrl;
 
   @JsonCreator
-  public PokemonForm(@JsonProperty("name") String name,@JsonProperty("powerId") Integer powerId, @JsonProperty("imageUrl") String imageUrl) {
+  public PokemonForm(
+      @JsonProperty("name") String name,
+      @JsonProperty("powerId") Integer powerId,
+      @JsonProperty("imageUrl") String imageUrl) {
     this.name = name;
     this.powerId = powerId;
     this.imageUrl = imageUrl;

@@ -5,6 +5,6 @@ import io.micronaut.data.repository.CrudRepository;
 import java.util.List;
 
 @Repository
-public interface PowerRepository extends CrudRepository<Power,Integer>{
-  public List<Power> findAll();
+public interface PowerRepository extends CrudRepository<Power, Integer> {
+  List<Power> findAll();
 }

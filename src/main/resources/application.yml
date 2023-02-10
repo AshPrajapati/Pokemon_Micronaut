@@ -9,7 +9,7 @@ datasources:
     driver-class-name: ${DATASOURCES_DEFAULT_DRIVER:org.mariadb.jdbc.Driver}
     db-type: mariadb
     dialect: MYSQL
-    jdbc-url: ${DATASOURCES_DEFAULT_URL:'jdbc:mariadb://localhost:4000/pokemon'}
+    jdbc-url: ${DATASOURCES_DEFAULT_URL:`jdbc:mariadb://localhost:4000/pokemon`}
     username: ${DATASOURCES_DEFAULT_USER:example-user}
     password: ${DATASOURCES_DEFAULT_PASSWORD:my_cool_secret}
 netty:

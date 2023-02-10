@@ -5,7 +5,6 @@ import com.example.exception.EntityNotFound;
 import com.example.power.Power;
 import com.example.power.PowerService;
 import jakarta.inject.Singleton;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +30,7 @@ public class PokemonService {
       throw new EntityAlreadyExistsException("Pokemon already exist with this name");
     }
 
-    Power power=powerService.get(pokemonCreationForm.getPowerId());
+    Power power = powerService.get(pokemonCreationForm.getPowerId());
     Pokemon pokemon = new Pokemon();
     pokemon.setName(pokemonCreationForm.getName());
     pokemon.setPower(power);
@@ -40,9 +39,8 @@ public class PokemonService {
   }
 
   public Pokemon update(Integer id, PokemonForm pokemon) {
-    Pokemon foundPokemon = pokemonRepository
-        .findById(id)
-        .orElseThrow(() -> new EntityNotFound("Pokemon not found"));
+    Pokemon foundPokemon =
+        pokemonRepository.findById(id).orElseThrow(() -> new EntityNotFound("Pokemon not found"));
     Power foundPower = powerService.get(pokemon.getPowerId());
     foundPokemon.setName(pokemon.getName());
     foundPokemon.setPower(foundPower);

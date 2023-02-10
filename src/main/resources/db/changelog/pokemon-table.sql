@@ -44,4 +44,3 @@ ADD CONSTRAINT `power_fk`
   REFERENCES `pokemon`.`power` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
-
