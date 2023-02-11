@@ -27,7 +27,7 @@ class PowerServiceShould {
   }
 
   @Test
-  void shouldReturnPowers() {
+  void shouldReturnPowerList() {
     Mockito.when(powerRepository.findAll()).thenReturn(List.of(power1, power2, power3));
 
     List<Power> powersList = powerService.get();
@@ -128,7 +128,6 @@ class PowerServiceShould {
   @Test
   void shouldDeletePower() {
     int powerId = power1.getId();
-    Mockito.when(powerRepository.findAll()).thenReturn(List.of(power2, power3));
 
     Mockito.when(powerRepository.findById(powerId)).thenReturn(Optional.ofNullable(power1));
 
@@ -136,9 +135,5 @@ class PowerServiceShould {
 
     Mockito.verify(powerRepository).findById(powerId);
     Mockito.verify(powerRepository).deleteById(powerId);
-
-    List<Power> powerList = powerService.get();
-
-    Assertions.assertThat(powerList).containsExactlyInAnyOrderElementsOf(List.of(power2, power3));
   }
 }
