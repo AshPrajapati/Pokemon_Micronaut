@@ -30,7 +30,7 @@ public class PokemonService {
       throw new EntityAlreadyExistsException("Pokemon already exist with this name");
     }
 
-    Power power = powerService.get(pokemonCreationForm.getPowerId());
+    Power power = powerService.getById(pokemonCreationForm.getPowerId());
     Pokemon pokemon = new Pokemon();
     pokemon.setName(pokemonCreationForm.getName());
     pokemon.setPower(power);
@@ -41,7 +41,7 @@ public class PokemonService {
   public Pokemon update(Integer id, PokemonForm pokemon) {
     Pokemon foundPokemon =
         pokemonRepository.findById(id).orElseThrow(() -> new EntityNotFound("Pokemon not found"));
-    Power foundPower = powerService.get(pokemon.getPowerId());
+    Power foundPower = powerService.getById(pokemon.getPowerId());
     foundPokemon.setName(pokemon.getName());
     foundPokemon.setPower(foundPower);
     foundPokemon.setImageUrl(pokemon.getImageUrl());

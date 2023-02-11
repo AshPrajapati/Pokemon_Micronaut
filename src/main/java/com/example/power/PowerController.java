@@ -31,7 +31,7 @@ public class PowerController {
 
   @Delete(value = "/{id}")
   public HttpResponse<Power> deletePower(@PathVariable Integer id) {
-    powerService.deletePower(id);
+    powerService.delete(id);
     return HttpResponse.ok();
   }
 }

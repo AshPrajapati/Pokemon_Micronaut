@@ -14,7 +14,7 @@ public class PowerService {
     this.powerRepository = powerRepository;
   }
 
-  public Power get(Integer id) {
+  public Power getById(Integer id) {
     return powerRepository
         .findById(id)
         .orElseThrow(() -> new EntityNotFound("Power not exist with this id " + id));
@@ -42,7 +42,7 @@ public class PowerService {
     return powerRepository.update(foundPower);
   }
 
-  public void deletePower(Integer id) {
+  public void delete(Integer id) {
     powerRepository.findById(id).orElseThrow(() -> new EntityNotFound("Power doesn't exist"));
     this.powerRepository.deleteById(id);
   }
