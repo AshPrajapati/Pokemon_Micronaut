@@ -35,6 +35,15 @@ jobs:
         with:
           name: app-jar
       - name: Display structure of downloaded files
-        run: ls -R
-
+        run: ls
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ env.APP_NAME }}
+          environment_name: ${{ env.APP_ENV }}
+          version_label: ${{ github.sha }}
+          region: ap-south-1
+          deployment_package: ./*-all.jar
 
