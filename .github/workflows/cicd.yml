@@ -1,6 +1,6 @@
 name: CI/CD
 
-on: [push]
+on: [ push ]
 
 jobs:
   build:
@@ -15,5 +15,7 @@ jobs:
           distribution: 'corretto'
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
+      - name: Give gradle executable permission
+        run: chmod +x ./gradlew
+      - name: Run Gradle build
+        run: ./gradlew build
