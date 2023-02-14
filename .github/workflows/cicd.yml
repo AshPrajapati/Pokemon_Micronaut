@@ -26,6 +26,7 @@ jobs:
           path: build/libs/*-all.jar
 
   deploy:
+    needs: build-and-test
     runs-on: ubuntu-latest
 
     steps:
