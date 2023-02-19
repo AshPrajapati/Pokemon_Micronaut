@@ -12,6 +12,7 @@ public class Power {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+
   private String name;
 
   public Power() {}
@@ -35,5 +36,9 @@ public class Power {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public String toString() {
+    return "{\"id\":" + this.id + ",\"name\":\"" + this.name + "\"}";
   }
 }

@@ -19,9 +19,15 @@ public class PowerController {
     return powerService.get();
   }
 
+
   @Post
   public HttpResponse<Power> addPower(@Body PowerForm powerForm) {
     return HttpResponse.created(powerService.create(powerForm));
+  }
+
+  @Get(value = "/{id}")
+  public HttpResponse<Power> getById(@PathVariable Integer id){
+    return HttpResponse.ok(powerService.getById(id));
   }
 
   @Put(value = "/{id}")
