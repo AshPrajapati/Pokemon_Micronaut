@@ -1,25 +1,34 @@
 package com.example.pokemon;
 
 import com.example.power.Power;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="pokemon")
+@Table(name = "pokemon")
 public class Pokemon {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
   private String name;
 
   @ManyToOne
-  @JoinColumn(referencedColumnName = "id",name = "power")
+  @JoinColumn(referencedColumnName = "id", name = "power")
   private Power power;
+
   @Column(name = "image_url")
   private String imageUrl;
 
   public Pokemon() {}
 
-  public Pokemon(Integer id, String name, Power power,String imageUrl) {
+  public Pokemon(Integer id, String name, Power power, String imageUrl) {
     this.id = id;
     this.name = name;
     this.power = power;

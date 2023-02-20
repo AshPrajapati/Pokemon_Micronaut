@@ -5,7 +5,6 @@ import com.example.exception.EntityNotFound;
 import com.example.power.Power;
 import com.example.power.PowerService;
 import jakarta.inject.Singleton;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -24,14 +23,14 @@ public class PokemonService {
     return pokemonRepository.findAll();
   }
 
-  public Pokemon create(PokemonCreationForm pokemonCreationForm) {
+  public Pokemon create(PokemonForm pokemonCreationForm) {
     Optional<Pokemon> byName =
         pokemonRepository.findByNameIgnoreCase(pokemonCreationForm.getName());
     if (byName.isPresent()) {
       throw new EntityAlreadyExistsException("Pokemon already exist with this name");
     }
 
-    Power power=powerService.get(pokemonCreationForm.getPowerId());
+    Power power = powerService.getById(pokemonCreationForm.getPowerId());
     Pokemon pokemon = new Pokemon();
     pokemon.setName(pokemonCreationForm.getName());
     pokemon.setPower(power);
@@ -39,11 +38,14 @@ public class PokemonService {
     return pokemonRepository.save(pokemon);
   }
 
-  public Pokemon update(Pokemon pokemon) {
-    pokemonRepository
-        .findById(pokemon.getId())
-        .orElseThrow(() -> new EntityNotFound("Pokemon not found"));
-    return pokemonRepository.update(pokemon);
+  public Pokemon update(Integer id, PokemonForm pokemon) {
+    Pokemon foundPokemon =
+        pokemonRepository.findById(id).orElseThrow(() -> new EntityNotFound("Pokemon not found"));
+    Power foundPower = powerService.getById(pokemon.getPowerId());
+    foundPokemon.setName(pokemon.getName());
+    foundPokemon.setPower(foundPower);
+    foundPokemon.setImageUrl(pokemon.getImageUrl());
+    return pokemonRepository.update(foundPokemon);
   }
 
   public Pokemon getPokemon(Integer id) {

@@ -5,23 +5,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = false)
-public class PokemonCreationForm {
-
+public class PokemonForm {
   private final String name;
   private final Integer powerId;
   private final String imageUrl;
 
   @JsonCreator
-  public PokemonCreationForm(
-      @JsonProperty("name") String name, @JsonProperty("power_id") Integer powerId,@JsonProperty("image_url") String imageUrl) {
-
+  public PokemonForm(
+      @JsonProperty("name") String name,
+      @JsonProperty("powerId") Integer powerId,
+      @JsonProperty("imageUrl") String imageUrl) {
     this.name = name;
     this.powerId = powerId;
     this.imageUrl = imageUrl;
-  }
-
-  public String getImageUrl() {
-    return imageUrl;
   }
 
   public String getName() {
@@ -30,5 +26,9 @@ public class PokemonCreationForm {
 
   public Integer getPowerId() {
     return powerId;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
   }
 }
