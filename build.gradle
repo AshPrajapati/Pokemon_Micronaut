@@ -1,7 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.7.0"
-    //id("io.micronaut.test-resources") version "3.7.0"
+    id("jacoco")
 }
 
 version = "0.1"
@@ -15,7 +15,8 @@ dependencies {
     testImplementation 'org.mockito:mockito-testng:0.4.30'
     testImplementation 'org.assertj:assertj-core:3.24.2'
     testImplementation("io.micronaut.test:micronaut-test-rest-assured")
-    testImplementation "org.testcontainers:testcontainers:1.17.6"
+    testImplementation("org.testcontainers:mariadb")
+    testImplementation("org.testcontainers:testcontainers")
 
 
     annotationProcessor("io.micronaut.data:micronaut-data-processor")

@@ -5,17 +5,6 @@ micronaut:
     port: 5000
     cors:
       enabled: true
-test-resources:
-  containers:
-    mariadb:
-      image-name: mariadb:latest
-  default:
-    dialect: MYSQL
-    username: root
-    password: test
-    db-type: mariadb
-    jdbc-url: jdbc:tc:mariadb://localhost/pokemon
-    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
 datasources:
   default:
     driver-class-name: ${DATASOURCES_DEFAULT_DRIVER:org.mariadb.jdbc.Driver}
